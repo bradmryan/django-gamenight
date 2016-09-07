@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Game Night</title>
+<style>
+  @import 'https://fonts.googleapis.com/css?family=Montserrat';
+  body {
+    background-color: #1B2838;
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    padding: 25px 0;
+    text-align: center;
+    background-color: #222;
+    color: #999;
+    margin: 0 0 50px 0;
+  }
+  th {
+    color: #999;
+  }
+  #banner {
+    min-height: 270px;
+    width: 100%;
+    background-color: #171a21;
+    margin: 0;
+    padding: 0;
+
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div id="banner" class="row">
+</div>
+
+<h1>GAME MATCHES</h1>
+
+<div class="container">
+  <table class="table table-hover">
+  <tr>
+    <th>App Id</th>
+    <th>App Name</th>
+    {% for player in players %}
+      <th>{{ player.name }}</th>
+    {% endfor %}
+  </tr>
+  {% for game in matches|dictsortreversed:"matches" %}
+    <tr {% if game.matches == number_of_players %} class="success"
+        {% elif game.matches == minimum_matches %} class="danger"
+        {% elif game.matches == number_of_players|add:"-1" %} class="info"
+        {% elif game.matches == number_of_players|add:"-2" %} class="warning"
+        {% else %} class="danger" {% endif %}>
+
+    <td>{{ game.appId }}</td>
+    <td><a href="http://store.steampowered.com/app/{{game.appId}}" target="_blank" rel="noopener noreferrer">{{ game.gameName }}</a></td>
+
+      {% for player in players %}
+        <td>
+          {% if game.appId in player.list %}
+            <span class="glyphicon glyphicon-ok"></span>
+          {% else %}
+            <span class="glyphicon glyphicon-remove"></span>
+          {% endif %}
+        </td>
+      {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -1,8 +1,11 @@
+!["Game Night"](http://i.imgur.com/IxFjdqX.png "Game Night")
+
+
 ### Requirements
 
 - Django == 1.10.1
 - requests == 2.11.1
-- A Steam Dev Key
+- A Steam Dev Key https://steamcommunity.com/dev
 - Steam Profile IDs for Players
 
 ### Installation
@@ -28,6 +31,10 @@ urlpatterns = [
     url(r'', include('gamenight.urls'))
 ]
 ```
+Update `config.py`, to reflect your project name:
+```
+from <your_app_name>.settings import DEBUG
+```
 In `developement`, create dev.py in the gamenight folder. Enter your Steam Developers Key:
 ```
 STEAM_KEY = "##########################"
@@ -52,3 +59,13 @@ Now you can navigate to your Django admin page, and begin to add players. Once t
   - Test your Steam Dev Key and Steam Profile ID using a service like Postman, or your browser. I suggest using Postman because it will give you more insight into the issue. `http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=<steam_dev_key>&steamid=<numeric_steam_profile_id>&format=json`
 - Template conflict:
   - gamenight has a `base.html` template in the `gamenight/templates/` folder. This may conflict with an already existing `base.html` template. If so, delete this file. Note that gamenight relies on a `base.html` template that includes a `head` block at the bottom of the `<head>` of the html, a `body` block in the `<body>`, and a `js` block at the bottom of the `<body>`
+
+### Future updates
+- Put app behind authentication.
+- Allow users to sign up using tokens assigned to players
+- Allow users to vote on a perfered game to play
+- Allow users ability to make purchasing suggestions
+- Allow users to vote on times for group play
+- Allow admin ability to create different groups
+- Display group info, such as Discord info, group play times
+- Distinguish which games are multiplayer/co-op

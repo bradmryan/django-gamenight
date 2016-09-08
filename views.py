@@ -107,5 +107,7 @@ def home(request):
     context["matches"] = match_list
     context["number_of_players"] = number_of_players
     context["minimum_matches"] = MINIMUM_MATCHES
+    context["title"] = config.TITLE
+    context["banner_image"] = config.BANNER_IMAGE
 
     return render(request, 'gamenight/home.html', context)

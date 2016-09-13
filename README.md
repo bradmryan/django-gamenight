@@ -31,15 +31,12 @@ urlpatterns = [
     url(r'', include('gamenight.urls'))
 ]
 ```
-Update `config.py`, to reflect your project name:
+
+Create an evironmental variable called STEAM_KEY, to store your steam key.
 ```
-from <your_app_name>.settings import DEBUG
+export STEAM_KEY="##########################"
 ```
-In `developement`, create dev.py in the gamenight folder. Enter your Steam Developers Key:
-```
-STEAM_KEY = "##########################"
-```
-In `production`, create an evironmental variable called STEAM_KEY, to store your steam key.
+Use `config.py` to customize your display.
 
 In your `console`, create migrations for gamenight models, then migrate:
 ```

@@ -1,10 +1,6 @@
-from app.settings import DEBUG
+import os
 
-if DEBUG:
-    from . import dev
-    STEAM_KEY = dev.STEAM_KEY
-else:
-    STEAM_KEY = os.environ['STEAM_KEY']
+STEAM_KEY = os.environ['STEAM_KEY']
 
 '''
 Enter the Minumum number of matches that you would like to make.
